@@ -10,7 +10,45 @@
 #include<cstdlib>
 #include<unordered_map>
 #include<ctime>
+using namespace std;
 // Define color constants
+/*
+1. Space-separated Tokens:
+Leave a space between every number, variable, operator, and parenthesis.
+Example:
+Correct: A + B * ( C - D )
+Incorrect: A+B*(C-D)
+
+2. Allowed Operators:
+The following operators are supported:
++ (addition), - (subtraction), * (multiplication), / (division), % (modulus), and ^ (exponentiation).
+
+3. Parentheses:
+Use parentheses for grouping expressions to define precedence explicitly in an infix expression.
+Ensure parentheses are balanced (each opening parenthesis ( has a corresponding closing parenthesis )).
+
+4. Variable Names:
+Variable names must start with a letter and may include letters and digits.
+Example: x, y1, var2, AB are valid, but 1x and x-y are not.
+
+5. Numbers:
+You can use integers (e.g., 2, -5) or decimals (e.g., 3.14, -0.75).
+Note: Two decimal points in a number are not allowed. For example, 3.14.5 is invalid.
+
+
+6. Negative Numbers:
+Negative numbers should be entered as -5 or -3.14 with the minus sign directly preceding the number.
+
+7. Operand Requirement for Binary Operators:
+Don’t miss operands for binary operators (operators that require two operands, like +, -, *, /).
+For example, an expression like A + or * B is invalid because it lacks a second operand.
+
+8. Expression Type:
+Do not mix expression types. If you choose a type, make sure the expression matches that type, or the program will produce an error.
+
+9. Handling Variables:
+If the expression contains variables, you must enter correct numeric values for all variables.
+*/
 
  int X[5][7] = {  {1,0,0,0,0,0,1},
     {0,1,0,0,0,1,0},
@@ -84,6 +122,7 @@
     {1,0,0,0,1,0,0},
     {1,0,0,0,0,1,0}
 };
+
 // Function to render a character block at (x, y)
 const SDL_Color RED = {255, 0, 0, 255};
 const SDL_Color GREEN = {0, 255, 0, 255};
@@ -231,7 +270,7 @@ void renderCharacter(SDL_Renderer* renderer, int character[5][7], int x, int y, 
 void renderText(SDL_Renderer* renderer, TTF_Font* font, const std::string& text, int x, int y, SDL_Color color) {
     SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
     if (!textSurface) {
-      //  std::cerr << "Unable to create text surface: " << TTF_GetError() << std::endl;
+       //cerr << "Unable to create text surface: " << TTF_GetError() << std::endl;
         return;
     }
 
@@ -239,7 +278,7 @@ void renderText(SDL_Renderer* renderer, TTF_Font* font, const std::string& text,
     SDL_FreeSurface(textSurface);
 
     if (!textTexture) {
-      //  std::cerr << "Unable to create text texture: " << SDL_GetError() << std::endl;
+      // cerr << "Unable to create text texture: " << SDL_GetError() << std::endl;
         return;
     }
 
